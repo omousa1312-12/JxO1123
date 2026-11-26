@@ -284,6 +284,45 @@ h2{font:400 clamp(52px,14vw,76px)/1 Allura,cursive;color:var(--wine);text-align:
 .plist li{background:#fff;border-radius:18px;padding:16px 18px 16px 54px;position:relative;text-align:left;font:600 20px/1.3 'Cormorant Garamond',serif;color:var(--ink);box-shadow:0 6px 16px rgba(125,20,48,.08)}
 .plist li::before{content:"♥";position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--wine2);font-size:22px;animation:hb 1.4s infinite}
 .pinky{font:400 clamp(40px,11vw,56px)/1 Allura,cursive;color:var(--wine);margin-top:22px}
+/* EVERYTHING / SMILE / SCRATCH / STARS */
+.every{background:radial-gradient(ellipse at 50% 40%,#fff5f7,var(--blush) 75%);text-align:center;min-height:78svh;display:grid;place-items:center}
+.every .pre{font:italic 600 clamp(26px,7vw,36px)/1 'Cormorant Garamond',serif;color:#6d3442}
+.every .word{display:block;min-height:1.3em;font:400 clamp(60px,17vw,104px)/1.05 Allura,cursive;background:linear-gradient(90deg,var(--wine),var(--wine2),var(--gold),var(--wine2),var(--wine));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 4s linear infinite;transition:opacity .45s,transform .45s;padding:0 .12em}
+.every .word.out{opacity:0;transform:translateY(18px) scale(.94)}
+.every .bigh{position:absolute;inset:0;margin:auto;width:min(110vw,600px);height:auto;opacity:.09;fill:var(--wine2);animation:hb 1.8s infinite;pointer-events:none}
+.every .jn{font:italic 20px 'Cormorant Garamond',serif;color:#6d3442;margin-top:10px}
+.smile{background:var(--blush2);text-align:center}
+.spot{position:relative;width:min(84vw,360px);margin:10px auto 0;padding:12px}
+.spot::before{content:"";position:absolute;inset:-6px;border-radius:26px;border:2px dashed var(--gold);opacity:.8}
+.spot::after{content:"";position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(246,220,160,.55),transparent 65%);z-index:-1;animation:hb 2s infinite}
+.spot img{display:block;width:100%;height:auto;border-radius:16px;border:6px solid #fff;box-shadow:0 18px 34px rgba(125,20,48,.22);cursor:zoom-in}
+.smile .cap{font:400 clamp(44px,12vw,62px)/1 Allura,cursive;color:var(--wine);margin-top:26px}
+.smile .sub{font:italic 600 22px/1.3 'Cormorant Garamond',serif;color:#6d3442;max-width:24ch;margin:6px auto 0}
+.scratch{background:var(--wine);color:#fbe3e7;text-align:center}
+.scratch h2{color:#fbe3e7}.scratch .lead{color:#f2c4cc}
+.sc{position:relative;width:min(86vw,360px);aspect-ratio:1.7;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 18px 34px rgba(0,0,0,.35);background:#fffaf2;display:grid;place-items:center;padding:16px}
+.sc p{font:italic 600 clamp(22px,6vw,28px)/1.2 'Cormorant Garamond',serif;color:var(--wine);text-wrap:balance}
+.sc p b{display:block;font:400 clamp(40px,11vw,54px)/1 Allura,cursive;color:var(--gold);margin-top:6px}
+.sc canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab;transition:opacity .8s}
+.sc.done canvas{opacity:0;pointer-events:none}
+.night{background:radial-gradient(ellipse at 50% 0%,#3a1238,#160618 70%);color:#f4e6ff;text-align:center;min-height:92svh;display:grid;place-items:center}
+.night .star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;animation:twinkle 3s ease-in-out infinite}
+.night .shoot{position:absolute;width:110px;height:2px;background:linear-gradient(90deg,#fff,transparent);border-radius:2px;transform:rotate(-28deg);animation:shoot 1.2s ease-out forwards;opacity:0}
+@keyframes shoot{0%{opacity:1;transform:translate(0,0) rotate(-28deg)}100%{opacity:0;transform:translate(-260px,140px) rotate(-28deg)}}
+.night .num{font:600 clamp(84px,26vw,150px)/.9 'Cormorant Garamond',serif;font-variant-numeric:lining-nums;background:linear-gradient(180deg,#fff,#f6dca0);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 40px rgba(246,220,160,.35)}
+.night .u{font:italic 24px 'Cormorant Garamond',serif;color:#e8c98f;letter-spacing:.06em}
+.night .l{font:italic 600 clamp(24px,6.6vw,32px)/1.25 'Cormorant Garamond',serif;max-width:20ch;margin:18px auto 0;text-wrap:balance}
+.night .s{font:400 clamp(46px,13vw,68px)/1 Allura,cursive;color:#f6dca0;margin-top:22px}
+.night h2::after{display:none}
+.dream{background:linear-gradient(180deg,#ffe3cf 0%,#fbc3c9 34%,#b0567f 62%,#3a1238 100%);text-align:center;padding-bottom:40px}
+.dream .row{max-width:440px;margin:0 auto 34px}
+.sun{width:92px;height:92px;border-radius:50%;margin:0 auto 14px;background:radial-gradient(circle at 40% 35%,#fff6c9,#ffc65c 60%,#ff9d4d);box-shadow:0 0 0 14px rgba(255,198,92,.25),0 0 60px 20px rgba(255,180,90,.55);animation:float 3s ease-in-out infinite}
+.moon{width:84px;height:84px;border-radius:50%;margin:0 auto 14px;box-shadow:inset -22px -6px 0 0 #fff3cf,0 0 40px rgba(255,243,207,.35);transform:rotate(-20deg);animation:float 3.6s ease-in-out infinite}
+.dream .k{font:italic 20px 'Cormorant Garamond',serif;letter-spacing:.04em}
+.dream .t{font:600 clamp(26px,7.4vw,36px)/1.2 'Cormorant Garamond',serif;text-wrap:balance}
+.dream .am{color:#7d1430}.dream .pm{color:#fff3e6}
+.dream .fut{font:400 clamp(52px,15vw,84px)/1 Allura,cursive;color:#f6dca0;margin-top:10px;text-shadow:0 0 30px rgba(246,220,160,.4)}
+.dream .futs{font:italic 600 clamp(24px,6.6vw,32px)/1.25 'Cormorant Garamond',serif;color:#fff3e6;max-width:18ch;margin:8px auto 0;text-wrap:balance}
 /* POLISH PASS */
 #prog{position:fixed;left:0;top:0;height:4px;width:0;z-index:75;background:linear-gradient(90deg,var(--wine2),var(--gold));border-radius:0 4px 4px 0;box-shadow:0 0 10px rgba(201,154,82,.7)}
 #prog::after{content:"♥";position:absolute;right:-7px;top:-8px;font-size:15px;color:var(--wine2);animation:hb 1.2s infinite}
@@ -382,6 +421,15 @@ svg.bear{cursor:pointer}
   <svg viewBox="0 0 120 136" class="bear peekbear" style="left:6%"><use href="#bear"/></svg>
 </section>
 
+<section class="band every">
+  <svg class="bigh" viewBox="0 0 24 22"><use href="#hrt"/></svg>
+  <div class="wrap">
+    <p class="pre fade">Jenna, you are</p>
+    <span class="word" id="word">my everything</span>
+    <p class="jn fade">and I mean every word</p>
+  </div>
+</section>
+
 <section class="band gal">
   <div class="wrap fade"><h2>Us</h2><p class="lead">a few of my favorite moments with my favorite person. tap any photo</p></div>
   <div class="stringwrap">
@@ -392,11 +440,29 @@ svg.bear{cursor:pointer}
   <div class="marq"><div class="track" id="t1"></div><div class="track rev" id="t2"></div></div>
 </section>
 
+<section class="band smile">
+  <div class="wrap">
+    <h2 class="fade">That smile</h2>
+    <p class="lead fade">the reason for mine</p>
+    <div class="spot fade"><img id="smileimg" src="img/p3.jpg" alt="Jenna smiling next to Omar"></div>
+    <p class="cap fade">my favorite smile</p>
+    <p class="sub fade">so, so beautiful. It gets me every single time.</p>
+  </div>
+</section>
+
 <section class="band reasons">
   <div class="wrap">
     <h2 class="fade">Why I love you</h2>
     <p class="lead fade">tap each heart</p>
     <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<section class="band scratch">
+  <div class="wrap">
+    <h2 class="fade">A little secret</h2>
+    <p class="lead fade">scratch the gold with your finger</p>
+    <div class="sc fade" id="sc"><p>You are my everything, and the most beautiful girl I have ever seen.<b>I love you, Jenna</b></p><canvas id="scc"></canvas></div>
   </div>
 </section>
 
@@ -462,6 +528,23 @@ svg.bear{cursor:pointer}
       <p>Happy 2 year Anniversary my favorite person</p>
       <p class="sig">Pookie Bear ♡</p>
     </div>
+  </div>
+</section>
+
+<section class="band dream">
+  <div class="wrap">
+    <div class="row am fade"><div class="sun"></div><p class="k">when I wake up</p><p class="t">You are my first thought.</p></div>
+    <div class="row pm fade"><div class="moon"></div><p class="k">when I fall asleep</p><p class="t">You are my last one.</p></div>
+    <div class="fade"><p class="fut">My whole future</p><p class="futs">I dream of it with you, Jenna.</p></div>
+  </div>
+</section>
+
+<section class="band night" id="night">
+  <div class="wrap">
+    <div class="num" id="nd">733</div>
+    <p class="u">days of you</p>
+    <p class="l">and I would choose you again on every single one of them.</p>
+    <p class="s">my everything</p>
   </div>
 </section>
 
@@ -626,6 +709,22 @@ $('bh').addEventListener('click',e=>{fireworks();sfx.beat();setTimeout(sfx.chime
 const reasons=["You make everything feel like home.","Your smile fixes my whole day.","You are my peace when things get loud.","The way you care, even when I make it hard.","You believe in me more than I do.","Every moment with you is my favorite one.","You are my first thought and my last one.","Because you are you. That is the whole reason."];
 $('cards').innerHTML=reasons.map((r,i)=>`<div class="card fade" role="button" tabindex="0"><div class="in2"><div class="f"><div><svg viewBox="0 0 24 22"><use href="#hrt"/></svg><b>${i+1}</b><small>tap me</small></div></div><div class="b">${r}</div></div></div>`).join('');
 $('cards').addEventListener('click',e=>{const c=e.target.closest('.card');if(!c)return;c.classList.toggle('flip');sfx.pop();setTimeout(sfx.twinkle,200);const r=c.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2,10)});
+/* everything words */
+{const ws=['my everything','my favorite smile','my world','so, so beautiful','my favorite person','my first and last love','my peace'];let wi=0;const w=$('word');
+setInterval(()=>{w.classList.add('out');setTimeout(()=>{wi=(wi+1)%ws.length;w.textContent=ws[wi];w.classList.remove('out')},460)},2400)}
+$('smileimg').addEventListener('click',e=>{lbi.src=e.target.getAttribute('src');lb.classList.add('on');sfx.whoosh();sfx.twinkle();e.stopPropagation()});
+/* scratch card */
+{const c=$('scc'),box=$('sc');let ctx,down=false,moves=0,done=false;
+const paint=()=>{const r=box.getBoundingClientRect();if(!r.width)return;c.width=r.width;c.height=r.height;ctx=c.getContext('2d');const g=ctx.createLinearGradient(0,0,c.width,c.height);g.addColorStop(0,'#b8863f');g.addColorStop(.5,'#f6dca0');g.addColorStop(1,'#c99a52');ctx.fillStyle=g;ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='rgba(125,20,48,.85)';ctx.font='italic 600 22px Cormorant Garamond, serif';ctx.textAlign='center';ctx.fillText('scratch me',c.width/2,c.height/2+7);ctx.globalCompositeOperation='destination-out'};
+const at=e=>{const r=c.getBoundingClientRect();ctx.beginPath();ctx.arc(e.clientX-r.left,e.clientY-r.top,26,0,7);ctx.fill();if(++moves%6===0)sfx.click();if(moves%18===0&&!done){const d=ctx.getImageData(0,0,c.width,c.height).data;let z=0;for(let i=3;i<d.length;i+=64)if(d[i]===0)z++;if(z/(d.length/64)>.45){done=true;box.classList.add('done');sfx.fanfare();const b=box.getBoundingClientRect();burst(b.left+b.width/2,b.top+b.height/2,26);rain(30)}}};
+c.addEventListener('pointerdown',e=>{if(!ctx)paint();down=true;c.setPointerCapture(e.pointerId);at(e)});c.addEventListener('pointermove',e=>{if(down)at(e)});
+['pointerup','pointercancel'].forEach(v=>c.addEventListener(v,()=>down=false));
+const sIO=new IntersectionObserver(es=>{if(es[0].isIntersecting){paint();sIO.disconnect()}},{threshold:.1});sIO.observe(box)}
+/* night sky */
+{const n=$('night');for(let i=0;i<70;i++){const st=document.createElement('span');st.className='star';st.style.left=Math.random()*100+'%';st.style.top=Math.random()*100+'%';const z=1+Math.random()*2.5;st.style.width=st.style.height=z+'px';st.style.animationDelay=-Math.random()*3+'s';n.appendChild(st)}
+setInterval(()=>{const r=n.getBoundingClientRect();if(reduce||r.bottom<0||r.top>innerHeight)return;const sh=document.createElement('span');sh.className='shoot';sh.style.left=(40+Math.random()*55)+'%';sh.style.top=(5+Math.random()*40)+'%';n.appendChild(sh);setTimeout(()=>sh.remove(),1300)},2600);
+const days=()=>Math.max(0,Math.floor((Date.now()-start)/86400000));let counted=false;
+new IntersectionObserver(es=>{if(!es[0].isIntersecting||counted)return;counted=true;sfx.rise(1.6);const D=days(),t0=performance.now();const f=t=>{const k=Math.min(1,(t-t0)/1600);$('nd').textContent=Math.round(D*(1-Math.pow(1-k,3))).toLocaleString();if(k<1)requestAnimationFrame(f);else sfx.chime()};requestAnimationFrame(f)},{threshold:.4}).observe(n)}
 /* polish: progress, mute, bears, cards */
 const prog=$('prog');addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?scrollY/h*100:0)+'%'},{passive:true});
 $('mute').onclick=()=>{const on=sfx.toggle();$('mute').classList.toggle('off',!on);if(on)sfx.pop()};
