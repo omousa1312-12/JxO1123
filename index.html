@@ -206,11 +206,12 @@ h2{font:400 clamp(52px,14vw,76px)/1 Allura,cursive;color:var(--wine);text-align:
 
 /* VIDEO PLAYER + DOCK */
 #ytbox{position:absolute;z-index:2;border-radius:18px;overflow:hidden;background:#1c1014;border:4px solid #fff;box-shadow:0 18px 34px rgba(80,10,30,.28);transition:opacity .5s}
-#ytbox.intro{position:fixed;z-index:91;left:50%;top:50%;width:min(78vw,330px);aspect-ratio:16/9;transform:translate(-50%,-42%);animation:glow 1.6s ease-in-out infinite;border-color:#f6dca0}
+#ytbox.intro{position:fixed;z-index:91;left:50%;top:50%;width:104px;height:104px;border-radius:50%;transform:translate(-50%,-50%);animation:glow 1.6s ease-in-out infinite;border:5px solid #f6dca0;background:#7d1430}
+#ytbox.intro iframe{position:absolute;left:50%;top:50%;width:320px;height:180px;transform:translate(-50%,-50%)}
 #ytbox.hide{opacity:0;pointer-events:none}
 #ytbox iframe{display:block;width:100%;height:100%}
-@keyframes glow{50%{box-shadow:0 0 0 8px rgba(125,20,48,.25),0 18px 34px rgba(80,10,30,.28)}}
-#intro .env{width:min(92vw,400px);animation:none}
+@keyframes glow{50%{box-shadow:0 0 0 12px rgba(201,154,82,.35),0 18px 34px rgba(80,10,30,.28)}}
+#intro .env{width:min(86vw,370px);animation:none}
 #intro .seal{display:none}
 #intro .tapme{bottom:-70px;font-size:21px;line-height:1.25;font-weight:600}
 .yt{position:relative;width:100%;max-width:560px;margin:0 auto 22px;aspect-ratio:16/9;min-height:200px;border-radius:18px;overflow:hidden;background:#1c1014;box-shadow:0 18px 34px rgba(80,10,30,.28);border:4px solid #fff}
@@ -266,6 +267,23 @@ h2{font:400 clamp(52px,14vw,76px)/1 Allura,cursive;color:var(--wine);text-align:
 .film video{display:block;width:min(64vw,280px);aspect-ratio:9/16;object-fit:cover;border-radius:6px;background:#000}
 .vtip{margin-top:14px;font-style:italic;color:#6d3442}
 
+/* REASONS + PROMISES */
+.reasons{background:var(--blush)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:520px;margin:0 auto}
+.card{position:relative;aspect-ratio:1/1.05;perspective:800px;cursor:pointer}
+.card .in2{position:absolute;inset:0;transition:transform .7s cubic-bezier(.3,1.3,.5,1);transform-style:preserve-3d}
+.card.flip .in2{transform:rotateY(180deg)}
+.card .f,.card .b{position:absolute;inset:0;border-radius:20px;display:grid;place-items:center;text-align:center;padding:12px;-webkit-backface-visibility:hidden;backface-visibility:hidden;box-shadow:0 10px 22px rgba(125,20,48,.14)}
+.card .f{background:linear-gradient(140deg,var(--wine2),var(--wine));color:#fbe3e7}
+.card .f b{font:400 46px/1 Allura,cursive;display:block}
+.card .f small{font-size:14px;font-style:italic;opacity:.85}
+.card .f svg{width:34px;animation:hb 1.4s infinite;fill:#f7d9de;margin:0 auto 4px;display:block}
+.card .b{background:#fff;color:var(--wine);transform:rotateY(180deg);font:italic 600 19px/1.25 'Cormorant Garamond',serif;border:2px solid var(--gold)}
+.promises{background:var(--blush2);text-align:center}
+.plist{list-style:none;max-width:480px;margin:0 auto;display:grid;gap:12px}
+.plist li{background:#fff;border-radius:18px;padding:16px 18px 16px 54px;position:relative;text-align:left;font:600 20px/1.3 'Cormorant Garamond',serif;color:var(--ink);box-shadow:0 6px 16px rgba(125,20,48,.08)}
+.plist li::before{content:"♥";position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--wine2);font-size:22px;animation:hb 1.4s infinite}
+.pinky{font:400 clamp(40px,11vw,56px)/1 Allura,cursive;color:var(--wine);margin-top:22px}
 /* POLISH PASS */
 #prog{position:fixed;left:0;top:0;height:4px;width:0;z-index:75;background:linear-gradient(90deg,var(--wine2),var(--gold));border-radius:0 4px 4px 0;box-shadow:0 0 10px rgba(201,154,82,.7)}
 #prog::after{content:"♥";position:absolute;right:-7px;top:-8px;font-size:15px;color:var(--wine2);animation:hb 1.2s infinite}
@@ -374,6 +392,14 @@ svg.bear{cursor:pointer}
   <div class="marq"><div class="track" id="t1"></div><div class="track rev" id="t2"></div></div>
 </section>
 
+<section class="band reasons">
+  <div class="wrap">
+    <h2 class="fade">Why I love you</h2>
+    <p class="lead fade">tap each heart</p>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
 <section class="band tape">
   <div class="wrap">
     <h2 class="fade">Our songs</h2>
@@ -436,6 +462,21 @@ svg.bear{cursor:pointer}
       <p>Happy 2 year Anniversary my favorite person</p>
       <p class="sig">Pookie Bear ♡</p>
     </div>
+  </div>
+</section>
+
+<section class="band promises">
+  <div class="wrap">
+    <h2 class="fade">My promises</h2>
+    <p class="lead fade">from my heart to yours</p>
+    <ul class="plist">
+      <li class="fade">To work it all out with you, every single time.</li>
+      <li class="fade">To pray with you and keep us close to God.</li>
+      <li class="fade">To say sorry first when I mess up.</li>
+      <li class="fade">To love every moment we have, and wait for the rest with you.</li>
+      <li class="fade">To keep choosing you. First and last, forever.</li>
+    </ul>
+    <p class="pinky fade">pinky promise, Jenna</p>
   </div>
 </section>
 
@@ -582,6 +623,9 @@ const fireworks=()=>{for(let k=0;k<7;k++)setTimeout(()=>{burst(innerWidth*(.15+M
 $('bh').addEventListener('click',e=>{fireworks();sfx.beat();setTimeout(sfx.chime,1400);$('hug').classList.add('on');$('rv').classList.add('on');burst(e.clientX,e.clientY,20);rain(50)});
 
 /* reveal on scroll */
+const reasons=["You make everything feel like home.","Your smile fixes my whole day.","You are my peace when things get loud.","The way you care, even when I make it hard.","You believe in me more than I do.","Every moment with you is my favorite one.","You are my first thought and my last one.","Because you are you. That is the whole reason."];
+$('cards').innerHTML=reasons.map((r,i)=>`<div class="card fade" role="button" tabindex="0"><div class="in2"><div class="f"><div><svg viewBox="0 0 24 22"><use href="#hrt"/></svg><b>${i+1}</b><small>tap me</small></div></div><div class="b">${r}</div></div></div>`).join('');
+$('cards').addEventListener('click',e=>{const c=e.target.closest('.card');if(!c)return;c.classList.toggle('flip');sfx.pop();setTimeout(sfx.twinkle,200);const r=c.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2,10)});
 /* polish: progress, mute, bears, cards */
 const prog=$('prog');addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?scrollY/h*100:0)+'%'},{passive:true});
 $('mute').onclick=()=>{const on=sfx.toggle();$('mute').classList.toggle('off',!on);if(on)sfx.pop()};
