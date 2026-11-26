@@ -204,6 +204,13 @@ h2{font:400 clamp(52px,14vw,76px)/1 Allura,cursive;color:var(--wine);text-align:
 #lb p{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#f2c4cc;font-style:italic}
 
 /* VIDEO PLAYER + DOCK */
+#ytbox{position:absolute;z-index:2;border-radius:18px;overflow:hidden;background:#1c1014;border:4px solid #fff;box-shadow:0 18px 34px rgba(80,10,30,.28);transition:opacity .5s}
+#ytbox.intro{position:fixed;z-index:91;left:50%;bottom:max(9svh,56px);width:min(84vw,360px);aspect-ratio:16/9;transform:translateX(-50%);animation:glow 1.6s ease-in-out infinite}
+#ytbox.hide{opacity:0;pointer-events:none}
+#ytbox iframe{display:block;width:100%;height:100%}
+@keyframes glow{50%{box-shadow:0 0 0 8px rgba(125,20,48,.25),0 18px 34px rgba(80,10,30,.28)}}
+#intro .env{margin-bottom:30svh;width:min(70vw,300px)}
+#intro .tapme{bottom:-76px;font-size:18px;line-height:1.25}
 .yt{position:relative;width:100%;max-width:560px;margin:0 auto 22px;aspect-ratio:16/9;min-height:200px;border-radius:18px;overflow:hidden;background:#1c1014;box-shadow:0 18px 34px rgba(80,10,30,.28);border:4px solid #fff}
 .yt iframe,.yt>div{position:absolute;inset:0;width:100%;height:100%}
 .ytfail{display:none;text-align:center;margin:-10px 0 18px;font-style:italic}
@@ -344,7 +351,7 @@ h2{font:400 clamp(52px,14vw,76px)/1 Allura,cursive;color:var(--wine);text-align:
     <h2 class="fade">Our songs</h2>
     <p class="lead fade">they keep playing while you scroll ♡</p>
     <button class="letsplay" id="letsplay">▶ play our song</button>
-    <div class="yt fade"><div id="ytp"></div></div>
+    <div class="yt" id="ytph"></div>
     <p class="ytfail" id="ytfail">this one won't play here, <a id="ytlink" target="_blank" rel="noopener">open it on YouTube ›</a></p>
     <div class="notes" id="notes" style="position:relative;left:50%;height:0"></div>
     <div class="eq" aria-hidden="true" id="eq"></div>
@@ -421,6 +428,7 @@ h2{font:400 clamp(52px,14vw,76px)/1 Allura,cursive;color:var(--wine);text-align:
   </div>
 </section>
 
+<div id="ytbox" class="intro"><div id="ytp"></div></div>
 <div id="dock" aria-label="Music player"><div class="disc"></div><div class="t"><b id="dkt">Maak Alby</b><small id="dka">Amr Diab</small></div><button class="pp" id="dkpp" aria-label="Play or pause">▶</button><button id="dknx" aria-label="Next song">⏭</button></div>
 <div id="lb" role="dialog" aria-label="Photo"><img alt="Jenna and Omar"><p>tap anywhere to close</p></div>
 
@@ -501,10 +509,10 @@ const checkLater=()=>setTimeout(()=>{if(!wantPlay||!ready)return;if(playing()){i
   try{yt.mute();yt.playVideo()}catch(e){}
   setTimeout(()=>{if(!wantPlay)return;if(playing()&&yt.isMuted())ask('🔊 tap for sound');else if(!playing())ask('▶ play our song')},1400)},1800);
 const unmute=()=>{if(ready&&yt.isMuted()){yt.unMute();yt.setVolume(100)}};
-window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('ytp',{videoId:songs[0][3][0],playerVars:{playsinline:1,rel:0,modestbranding:1},events:{
+window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('ytp',{videoId:songs[0][3][0],width:'100%',height:'100%',playerVars:{playsinline:1,rel:0,modestbranding:1},events:{
   onReady:()=>{ready=true;yt.setVolume(100);openReady();if(wantPlay){yt.loadVideoById(vid());yt.playVideo();checkLater()}},
-  onStateChange:e=>{const p=e.data===1;dock.classList.toggle('playing',p);$('dkpp').textContent=p?'❚❚':'▶';if(p&&!yt.isMuted()){dock.classList.remove('ask');$('letsplay').classList.remove('on')}if(e.data===0)play((cur+1)%songs.length)},
-  onError:()=>{if(alt<songs[cur][3].length-1){alt++;yt.loadVideoById(vid());if(wantPlay)yt.playVideo()}else $('ytfail').style.display='block'}}})};
+  onStateChange:e=>{const p=e.data===1;if(p&&!intro.classList.contains('open'))open(true);dock.classList.toggle('playing',p);$('dkpp').textContent=p?'❚❚':'▶';if(p&&!yt.isMuted()){dock.classList.remove('ask');$('letsplay').classList.remove('on')}if(e.data===0)play((cur+1)%songs.length)},
+  onError:()=>{if(alt<songs[cur][3].length-1){alt++;yt.loadVideoById(vid());if(wantPlay)yt.playVideo()}else{$('ytfail').style.display='block';$('tapme').textContent='tap the envelope to open ♡'}}}})};
 {const t=document.createElement('script');t.src='https://www.youtube.com/iframe_api';document.head.appendChild(t)}
 document.getElementById('songs').addEventListener('click',e=>{const b=e.target.closest('.song');if(b){sfx.pop();play(+b.dataset.i)}});
 $('dkpp').onclick=()=>{sfx.click();if(!ready)return;if(playing()&&yt.isMuted()){unmute();dock.classList.remove('ask');$('letsplay').classList.remove('on');return}if(playing()){wantPlay=false;yt.pauseVideo()}else{wantPlay=true;unmute();yt.playVideo();checkLater()}};
@@ -523,10 +531,14 @@ const vIO=new IntersectionObserver(es=>{es[0].isIntersecting?v1.play().catch(()=
 v1.addEventListener('click',()=>{v1.muted=!v1.muted;v1.controls=true;if(!v1.muted&&playing()){yt.pauseVideo();wantPlay=false}v1.play().catch(()=>{})});
 
 /* intro */
-let openOK=false;const openReady=()=>{if(openOK)return;openOK=true;intro.classList.remove('wait');$('tapme').textContent='tap to open ♡'};
+let openOK=false;const openReady=()=>{if(openOK)return;openOK=true;intro.classList.remove('wait');$('tapme').innerHTML='press ▶ below to open<br>with our song ♡'};
 setTimeout(openReady,5000);
-const open=()=>{if(!openOK||intro.classList.contains('open'))return;sfx.unlock();sfx.chime();intro.classList.add('open','gone');play(0);setTimeout(()=>{rain(36);sfx.twinkle()},900)};
-intro.addEventListener('click',open);
+const ybox=$('ytbox'),yph=$('ytph');
+const place=()=>{if(ybox.classList.contains('intro'))return;const r=yph.getBoundingClientRect();ybox.style.top=(r.top+scrollY)+'px';ybox.style.left=(r.left+scrollX)+'px';ybox.style.width=r.width+'px';ybox.style.height=r.height+'px'};
+addEventListener('resize',place);addEventListener('load',place);setInterval(place,1000);
+const open=fromPlayer=>{if(!openOK&&!fromPlayer)return;if(intro.classList.contains('open'))return;sfx.unlock();sfx.chime();intro.classList.add('open','gone');ybox.classList.add('hide');setTimeout(()=>{ybox.classList.remove('intro');place();ybox.classList.remove('hide')},1500);
+if(fromPlayer){cur=0;alt=alt||0;wantPlay=true;setUI();dock.classList.add('on');dock.classList.add('playing');$('dkpp').textContent='❚❚'}else play(0);setTimeout(()=>{rain(36);sfx.twinkle()},900)};
+intro.addEventListener('click',()=>open());
 intro.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')open()});
 
 /* love meter */
