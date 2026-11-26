@@ -323,6 +323,37 @@ h2{font:400 clamp(52px,14vw,76px)/1 Allura,cursive;color:var(--wine);text-align:
 .dream .am{color:#7d1430}.dream .pm{color:#fff3e6}
 .dream .fut{font:400 clamp(52px,15vw,84px)/1 Allura,cursive;color:#f6dca0;margin-top:10px;text-shadow:0 0 30px rgba(246,220,160,.4)}
 .dream .futs{font:italic 600 clamp(24px,6.6vw,32px)/1.25 'Cormorant Garamond',serif;color:#fff3e6;max-width:18ch;margin:8px auto 0;text-wrap:balance}
+/* STORY / SO US / FUTURE / DUA */
+.story{background:var(--blush2)}
+.tl{position:relative;max-width:460px;margin:0 auto;padding-left:34px}
+.tl::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--gold),var(--wine2))}
+.tl li{list-style:none;position:relative;background:#fff;border-radius:18px;padding:14px 16px;margin-bottom:16px;box-shadow:0 6px 16px rgba(125,20,48,.08)}
+.tl li::before{content:"♥";position:absolute;left:-33px;top:14px;width:24px;height:24px;border-radius:50%;background:var(--wine);color:#fbe3e7;font-size:13px;display:grid;place-items:center;animation:hb 1.4s infinite}
+.tl small{font:italic 15px 'Cormorant Garamond',serif;color:var(--wine2);letter-spacing:.04em}
+.tl b{display:block;font:600 22px/1.2 'Cormorant Garamond',serif;color:var(--wine)}
+.tl span{display:block;font-size:18px;line-height:1.35;color:#5a2a36;margin-top:2px}
+.sous{background:var(--blush);text-align:center}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:460px;margin:0 auto}
+.chip{padding:10px 18px;border-radius:30px;background:#fff;color:var(--wine);font:600 19px 'Cormorant Garamond',serif;box-shadow:0 6px 14px rgba(125,20,48,.1);animation:float 3s ease-in-out infinite;cursor:pointer}
+.chip:nth-child(2n){animation-delay:-1s;background:var(--wine);color:#fbe3e7}.chip:nth-child(3n){animation-delay:-2s}
+.chip.big{font:400 34px/1 Allura,cursive;padding:10px 24px;background:linear-gradient(90deg,#b8863f,#f6dca0,#c99a52);color:#3a0d1c}
+.bouq{display:flex;justify-content:center;align-items:flex-end;margin:34px auto 0;height:170px}
+.bouq svg{width:74px;height:160px;margin:0 -12px;transform-origin:50% 100%;transform:scaleY(0);transition:transform 1.4s cubic-bezier(.3,1.4,.5,1)}
+.bouq.in svg{transform:scaleY(1) rotate(var(--r))}
+.bouq.in svg:nth-child(2){transition-delay:.2s}.bouq.in svg:nth-child(3){transition-delay:.4s}.bouq.in svg:nth-child(4){transition-delay:.6s}.bouq.in svg:nth-child(5){transition-delay:.8s}
+.sous .carncap{font:italic 600 21px 'Cormorant Garamond',serif;color:#6d3442;margin-top:8px}
+.future{background:linear-gradient(180deg,#3a1238,#5a1c4a 55%,#3a1238);color:#fff3e6;text-align:center}
+.future h2{color:#f6dca0}.future .lead{color:#e8c98f}
+.fly{width:min(92vw,420px);margin:0 auto;display:block}
+.future .ft{font:600 clamp(26px,7.2vw,34px)/1.2 'Cormorant Garamond',serif;margin:6px auto 30px;max-width:18ch;text-wrap:balance}
+.fam{display:flex;justify-content:center;align-items:flex-end;gap:4px;height:120px}
+.fam svg{width:92px}.fam svg.kid{width:46px;transform:scale(0);transition:transform .6s cubic-bezier(.3,1.8,.5,1)}
+.fam.in svg.kid{transform:scale(1)}.fam.in svg.kid:nth-of-type(3){transition-delay:.5s}.fam.in svg.kid:nth-of-type(4){transition-delay:1s}.fam.in svg.kid:nth-of-type(5){transition-delay:1.5s}
+.yalla{font:400 clamp(60px,17vw,96px)/1 Allura,cursive;color:#f6dca0;margin-top:26px;animation:hb 1.6s infinite}
+.yalla+p{font:italic 19px 'Cormorant Garamond',serif;color:#e8c98f}
+.dua{max-width:460px;margin:34px auto 0;background:#fff;border:2px solid var(--gold);border-radius:22px;padding:22px 18px;box-shadow:0 10px 24px rgba(125,20,48,.12)}
+.dua .ar{font:700 30px/1.5 Amiri,serif;color:var(--wine);direction:rtl}
+.dua p{font:italic 600 20px/1.35 'Cormorant Garamond',serif;color:#5a2a36;margin-top:6px}
 /* POLISH PASS */
 #prog{position:fixed;left:0;top:0;height:4px;width:0;z-index:75;background:linear-gradient(90deg,var(--wine2),var(--gold));border-radius:0 4px 4px 0;box-shadow:0 0 10px rgba(201,154,82,.7)}
 #prog::after{content:"♥";position:absolute;right:-7px;top:-8px;font-size:15px;color:var(--wine2);animation:hb 1.2s infinite}
@@ -372,6 +403,7 @@ svg.bear{cursor:pointer}
       <ellipse cx="36" cy="104" rx="9" ry="12" fill="#c78a5f" transform="rotate(-25 36 104)"/>
       <ellipse cx="84" cy="104" rx="9" ry="12" fill="#c78a5f" transform="rotate(25 84 104)"/>
     </symbol>
+    <symbol id="carn" viewBox="0 0 60 130"><path d="M30 46 C 28 80, 33 100, 30 128" stroke="#5f9a63" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M30 86 C 16 78, 10 84, 6 74 C 16 72, 24 76, 30 86Z M31 100 C 44 92, 50 98, 55 88 C 45 86, 37 90, 31 100Z" fill="#6fae73"/><path d="M22 44 L30 56 L38 44Z" fill="#5f9a63"/><circle cx="47.0" cy="30.0" r="8" fill="#f08aa6"/><circle cx="44.7" cy="38.5" r="8" fill="#f08aa6"/><circle cx="38.5" cy="44.7" r="8" fill="#f08aa6"/><circle cx="30.0" cy="47.0" r="8" fill="#f08aa6"/><circle cx="21.5" cy="44.7" r="8" fill="#f08aa6"/><circle cx="15.3" cy="38.5" r="8" fill="#f08aa6"/><circle cx="13.0" cy="30.0" r="8" fill="#f08aa6"/><circle cx="15.3" cy="21.5" r="8" fill="#f08aa6"/><circle cx="21.5" cy="15.3" r="8" fill="#f08aa6"/><circle cx="30.0" cy="13.0" r="8" fill="#f08aa6"/><circle cx="38.5" cy="15.3" r="8" fill="#f08aa6"/><circle cx="44.7" cy="21.5" r="8" fill="#f08aa6"/><circle cx="39.6" cy="33.0" r="7.5" fill="#f6a9bd"/><circle cx="34.7" cy="38.8" r="7.5" fill="#f6a9bd"/><circle cx="27.0" cy="39.6" r="7.5" fill="#f6a9bd"/><circle cx="21.2" cy="34.7" r="7.5" fill="#f6a9bd"/><circle cx="20.4" cy="27.0" r="7.5" fill="#f6a9bd"/><circle cx="25.3" cy="21.2" r="7.5" fill="#f6a9bd"/><circle cx="33.0" cy="20.4" r="7.5" fill="#f6a9bd"/><circle cx="38.8" cy="25.3" r="7.5" fill="#f6a9bd"/><circle cx="34.0" cy="30.0" r="5.5" fill="#fbd0da"/><circle cx="31.2" cy="33.8" r="5.5" fill="#fbd0da"/><circle cx="26.8" cy="32.4" r="5.5" fill="#fbd0da"/><circle cx="26.8" cy="27.6" r="5.5" fill="#fbd0da"/><circle cx="31.2" cy="26.2" r="5.5" fill="#fbd0da"/></symbol>
     <symbol id="hrt" viewBox="0 0 24 22"><path d="M12 21.5S.5 14.5.5 7A6.3 6.3 0 0 1 12 3.6 6.3 6.3 0 0 1 23.5 7c0 7.5-11.5 14.5-11.5 14.5z"/></symbol>
   </defs>
 </svg>
@@ -430,6 +462,21 @@ svg.bear{cursor:pointer}
   </div>
 </section>
 
+<section class="band story">
+  <div class="wrap">
+    <h2 class="fade">Our story</h2>
+    <p class="lead fade">how a pook found his pook</p>
+    <ul class="tl">
+      <li class="fade"><small>where it started</small><b>AUC</b><span>Out of the whole campus, I found you.</span></li>
+      <li class="fade"><small>plot twist</small><b>The car crash</b><span>Not exactly a normal way to start. We still laugh about it.</span></li>
+      <li class="fade"><small>11 · 23 · 2024</small><b>The best decision of my life</b><span>The day you became my Pookie Bear.</span></li>
+      <li class="fade"><small>my birthday</small><b>Mobistro</b><span>You surprised me there, and I have not stopped smiling since.</span></li>
+      <li class="fade"><small>the moment I will never forget</small><b>The day you surprised me</b><span>When you became a hijabi. I will carry that day with me forever.</span></li>
+      <li class="fade"><small>today</small><b>Two years of us</b><span>And I am only getting started, alby.</span></li>
+    </ul>
+  </div>
+</section>
+
 <section class="band gal">
   <div class="wrap fade"><h2>Us</h2><p class="lead">a few of my favorite moments with my favorite person. tap any photo</p></div>
   <div class="stringwrap">
@@ -463,6 +510,16 @@ svg.bear{cursor:pointer}
     <h2 class="fade">A little secret</h2>
     <p class="lead fade">scratch the gold with your finger</p>
     <div class="sc fade" id="sc"><p>You are my everything, and the most beautiful girl I have ever seen.<b>I love you, Jenna</b></p><canvas id="scc"></canvas></div>
+  </div>
+</section>
+
+<section class="band sous">
+  <div class="wrap">
+    <h2 class="fade">So us</h2>
+    <p class="lead fade">the little things only we get</p>
+    <div class="chips fade" id="chips"><span class="chip big">Yalla beena!</span><span class="chip">Pook</span><span class="chip">Alby</span><span class="chip">Pookie Bear</span><span class="chip">Wingo</span><span class="chip">lychee</span><span class="chip">Bascota</span><span class="chip">Mobistro</span><span class="chip">such a baby</span></div>
+    <div class="bouq" id="bouq"><svg style="--r:-16deg"><use href="#carn"/></svg><svg style="--r:-8deg"><use href="#carn"/></svg><svg style="--r:0deg"><use href="#carn"/></svg><svg style="--r:8deg"><use href="#carn"/></svg><svg style="--r:16deg"><use href="#carn"/></svg></div>
+    <p class="carncap">carnations, because they are your favorite</p>
   </div>
 </section>
 
@@ -539,6 +596,18 @@ svg.bear{cursor:pointer}
   </div>
 </section>
 
+<section class="band future">
+  <div class="wrap">
+    <h2 class="fade">Our future</h2>
+    <p class="lead fade">the plan, pook</p>
+    <svg class="fly" viewBox="0 0 420 130"><path id="arc" d="M20 110 Q210 -40 400 110" fill="none" stroke="#f6dca0" stroke-width="2" stroke-dasharray="3 9" stroke-linecap="round"/><circle cx="20" cy="110" r="6" fill="#f6dca0"/><circle cx="400" cy="110" r="6" fill="#f6dca0"/><g fill="#fff3e6"><path d="M-14 0 L10 -5 L16 0 L10 5Z M-4 -2 L-10 -12 L-5 -12 L4 -3Z M-4 2 L-10 12 L-5 12 L4 3Z"/><animateMotion dur="5s" repeatCount="indefinite" rotate="auto"><mpath href="#arc"/></animateMotion></g></svg>
+    <p class="ft fade">Travel the whole world with you.</p>
+    <div class="fam" id="fam"><svg viewBox="0 0 120 136" class="bear"><use href="#bear"/></svg><svg viewBox="0 0 120 136" class="bear"><use href="#bear"/></svg><svg viewBox="0 0 120 136" class="bear kid"><use href="#bear"/></svg><svg viewBox="0 0 120 136" class="bear kid"><use href="#bear"/></svg><svg viewBox="0 0 120 136" class="bear kid"><use href="#bear"/></svg></div>
+    <p class="ft fade" style="margin-top:14px">You, me, and three little ones.</p>
+    <p class="yalla">Yalla beena!</p><p>let's gooo</p>
+  </div>
+</section>
+
 <section class="band night" id="night">
   <div class="wrap">
     <div class="num" id="nd">733</div>
@@ -560,6 +629,7 @@ svg.bear{cursor:pointer}
       <li class="fade">To keep choosing you. First and last, forever.</li>
     </ul>
     <p class="pinky fade">pinky promise, Jenna</p>
+    <div class="dua fade"><p class="ar">ربنا يحفظك ليا يا قلبي</p><p>May God protect you, keep that smile on your face, and keep us together, always. Ameen.</p></div>
   </div>
 </section>
 
@@ -706,11 +776,11 @@ const fireworks=()=>{for(let k=0;k<7;k++)setTimeout(()=>{burst(innerWidth*(.15+M
 $('bh').addEventListener('click',e=>{fireworks();sfx.beat();setTimeout(sfx.chime,1400);$('hug').classList.add('on');$('rv').classList.add('on');burst(e.clientX,e.clientY,20);rain(50)});
 
 /* reveal on scroll */
-const reasons=["You make everything feel like home.","Your smile fixes my whole day.","You are my peace when things get loud.","The way you care, even when I make it hard.","You believe in me more than I do.","Every moment with you is my favorite one.","You are my first thought and my last one.","Because you are you. That is the whole reason."];
+const reasons=["You make everything feel like home.","Your smile fixes my whole day.","You are my peace when things get loud.","You are so cute and so innocent. Such a baby.","You believe in me more than I do.","Every moment with you is my favorite one.","You are my first thought and my last one.","Because you are you. That is the whole reason."];
 $('cards').innerHTML=reasons.map((r,i)=>`<div class="card fade" role="button" tabindex="0"><div class="in2"><div class="f"><div><svg viewBox="0 0 24 22"><use href="#hrt"/></svg><b>${i+1}</b><small>tap me</small></div></div><div class="b">${r}</div></div></div>`).join('');
 $('cards').addEventListener('click',e=>{const c=e.target.closest('.card');if(!c)return;c.classList.toggle('flip');sfx.pop();setTimeout(sfx.twinkle,200);const r=c.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2,10)});
 /* everything words */
-{const ws=['my everything','my favorite smile','my world','so, so beautiful','my favorite person','my first and last love','my peace'];let wi=0;const w=$('word');
+{const ws=['my everything','my favorite smile','my world','so, so beautiful','my favorite person','my first and last love','my pook','alby','my peace'];let wi=0;const w=$('word');
 setInterval(()=>{w.classList.add('out');setTimeout(()=>{wi=(wi+1)%ws.length;w.textContent=ws[wi];w.classList.remove('out')},460)},2400)}
 $('smileimg').addEventListener('click',e=>{lbi.src=e.target.getAttribute('src');lb.classList.add('on');sfx.whoosh();sfx.twinkle();e.stopPropagation()});
 /* scratch card */
@@ -725,6 +795,8 @@ const sIO=new IntersectionObserver(es=>{if(es[0].isIntersecting){paint();sIO.dis
 setInterval(()=>{const r=n.getBoundingClientRect();if(reduce||r.bottom<0||r.top>innerHeight)return;const sh=document.createElement('span');sh.className='shoot';sh.style.left=(40+Math.random()*55)+'%';sh.style.top=(5+Math.random()*40)+'%';n.appendChild(sh);setTimeout(()=>sh.remove(),1300)},2600);
 const days=()=>Math.max(0,Math.floor((Date.now()-start)/86400000));let counted=false;
 new IntersectionObserver(es=>{if(!es[0].isIntersecting||counted)return;counted=true;sfx.rise(1.6);const D=days(),t0=performance.now();const f=t=>{const k=Math.min(1,(t-t0)/1600);$('nd').textContent=Math.round(D*(1-Math.pow(1-k,3))).toLocaleString();if(k<1)requestAnimationFrame(f);else sfx.chime()};requestAnimationFrame(f)},{threshold:.4}).observe(n)}
+{const pop=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');sfx.twinkle();pop.unobserve(e.target)}}),{threshold:.5});pop.observe($('bouq'));pop.observe($('fam'));
+$('chips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;sfx.pop();const r=c.getBoundingClientRect();burst(r.left+r.width/2,r.top,10)})}
 /* polish: progress, mute, bears, cards */
 const prog=$('prog');addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?scrollY/h*100:0)+'%'},{passive:true});
 $('mute').onclick=()=>{const on=sfx.toggle();$('mute').classList.toggle('off',!on);if(on)sfx.pop()};
