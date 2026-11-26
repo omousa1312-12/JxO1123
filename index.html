@@ -264,7 +264,11 @@ h2{font:400 clamp(52px,14vw,76px)/1 Allura,cursive;color:var(--wine);text-align:
 .film{display:inline-block;background:#1c1014;padding:16px 26px;border-radius:12px;position:relative;box-shadow:0 18px 34px rgba(60,10,25,.3);transform:rotate(-1.5deg)}
 .film::before,.film::after{content:"";position:absolute;top:0;bottom:0;width:14px;background:repeating-linear-gradient(#1c1014 0 8px,#fbe3e7 8px 16px,#1c1014 16px 24px);background-size:6px 24px;background-repeat:repeat-y;background-position:center}
 .film::before{left:4px}.film::after{right:4px}
-.film video{display:block;width:min(64vw,280px);aspect-ratio:9/16;object-fit:cover;border-radius:6px;background:#000}
+.film video{display:block;width:min(62vw,270px);height:auto;border-radius:6px;background:#000}
+.vstrip{display:flex;align-items:center;gap:26px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px max(14vw,40px) 26px;scrollbar-width:none;margin:0 -20px}
+.vstrip::-webkit-scrollbar{display:none}
+.vstrip .film{flex:none;scroll-snap-align:center;transform:none}
+.vstrip .film:nth-child(odd){transform:rotate(-1.5deg)}.vstrip .film:nth-child(even){transform:rotate(1.5deg)}
 .vtip{margin-top:14px;font-style:italic;color:#6d3442}
 
 /* REASONS + PROMISES */
@@ -354,6 +358,12 @@ h2{font:400 clamp(52px,14vw,76px)/1 Allura,cursive;color:var(--wine);text-align:
 .dua{max-width:460px;margin:34px auto 0;background:#fff;border:2px solid var(--gold);border-radius:22px;padding:22px 18px;box-shadow:0 10px 24px rgba(125,20,48,.12)}
 .dua .ar{font:700 30px/1.5 Amiri,serif;color:var(--wine);direction:rtl}
 .dua p{font:italic 600 20px/1.35 'Cormorant Garamond',serif;color:#5a2a36;margin-top:6px}
+.tlimg{display:block;width:100%;height:auto;border-radius:12px;margin-top:10px}
+.little{background:var(--blush2)}
+.lgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:480px;margin:0 auto;align-items:start}
+.lgrid .pol:nth-child(odd){transform:rotate(-2deg)}.lgrid .pol:nth-child(even){transform:rotate(2deg)}
+.lgrid .wide{grid-column:1/-1;max-width:300px;margin:0 auto}
+.lgrid figcaption{font-size:17px}
 /* POLISH PASS */
 #prog{position:fixed;left:0;top:0;height:4px;width:0;z-index:75;background:linear-gradient(90deg,var(--wine2),var(--gold));border-radius:0 4px 4px 0;box-shadow:0 0 10px rgba(201,154,82,.7)}
 #prog::after{content:"♥";position:absolute;right:-7px;top:-8px;font-size:15px;color:var(--wine2);animation:hb 1.2s infinite}
@@ -468,7 +478,7 @@ svg.bear{cursor:pointer}
     <p class="lead fade">how a pook found his pook</p>
     <ul class="tl">
       <li class="fade"><small>where it started</small><b>AUC</b><span>Out of the whole campus, I found you.</span></li>
-      <li class="fade"><small>plot twist</small><b>The car crash</b><span>Not exactly a normal way to start. We still laugh about it.</span></li>
+      <li class="fade"><small>plot twist</small><b>The car crash</b><span>Not exactly a normal way to start. We still laugh about it.</span><img class="tlimg" src="img/crash.jpg" alt="The car after the crash" loading="lazy"></li>
       <li class="fade"><small>11 · 23 · 2024</small><b>The best decision of my life</b><span>The day you became my Pookie Bear.</span></li>
       <li class="fade"><small>my birthday</small><b>Mobistro</b><span>You surprised me there, and I have not stopped smiling since.</span></li>
       <li class="fade"><small>the moment I will never forget</small><b>The day you surprised me</b><span>When you became a hijabi. I will carry that day with me forever.</span></li>
@@ -510,6 +520,20 @@ svg.bear{cursor:pointer}
     <h2 class="fade">A little secret</h2>
     <p class="lead fade">scratch the gold with your finger</p>
     <div class="sc fade" id="sc"><p>You are my everything, and the most beautiful girl I have ever seen.<b>I love you, Jenna</b></p><canvas id="scc"></canvas></div>
+  </div>
+</section>
+
+<section class="band little">
+  <div class="wrap">
+    <h2 class="fade">Little things</h2>
+    <p class="lead fade">that mean everything to me</p>
+    <div class="lgrid">
+      <figure class="pol fade"><img loading="lazy" src="img/m2.jpg" alt="Walking together"><figcaption>my fav couple</figcaption></figure>
+      <figure class="pol fade"><img loading="lazy" src="img/m1.jpg" alt="A J drawn on Omar"><figcaption>J for Jenna</figcaption></figure>
+      <figure class="pol fade"><img loading="lazy" src="img/m4.jpg" alt="A gift box and a rose"><figcaption>just for you</figcaption></figure>
+      <figure class="pol fade"><img loading="lazy" src="img/m5.jpg" alt="A pink flower"><figcaption>a flower for my flower</figcaption></figure>
+      <figure class="pol fade wide"><img loading="lazy" src="img/m3.jpg" alt="A gold bracelet engraved 11.23.24"><figcaption>11.23.24</figcaption></figure>
+    </div>
   </div>
 </section>
 
@@ -555,8 +579,8 @@ svg.bear{cursor:pointer}
   <div class="wrap">
     <h2 class="fade">Us, moving</h2>
     <p class="lead fade">tap for sound</p>
-    <div class="film fade"><video id="v1" src="media/v1.mp4" poster="media/v1.jpg" muted loop playsinline preload="metadata"></video></div>
-    <p class="vtip">our song pauses while this one talks</p>
+    <div class="vstrip" id="vstrip"><div class="film"><video src="media/v4.mp4" poster="media/v4.jpg" muted loop playsinline preload="none"></video></div><div class="film"><video src="media/v5.mp4" poster="media/v5.jpg" muted loop playsinline preload="none"></video></div><div class="film"><video src="media/v2.mp4" poster="media/v2.jpg" muted loop playsinline preload="none"></video></div><div class="film"><video src="media/v6.mp4" poster="media/v6.jpg" muted loop playsinline preload="none"></video></div><div class="film"><video src="media/v7.mp4" poster="media/v7.jpg" muted loop playsinline preload="none"></video></div><div class="film"><video src="media/v3.mp4" poster="media/v3.jpg" muted loop playsinline preload="none"></video></div><div class="film"><video src="media/v9.mp4" poster="media/v9.jpg" muted loop playsinline preload="none"></video></div><div class="film"><video src="media/v10.mp4" poster="media/v10.jpg" muted loop playsinline preload="none"></video></div><div class="film"><video src="media/v1.mp4" poster="media/v1.jpg" muted loop playsinline preload="none"></video></div></div>
+    <p class="vtip">swipe for more. our song pauses while a video talks</p>
   </div>
 </section>
 
@@ -658,8 +682,8 @@ svg.bear{cursor:pointer}
 <script>
 {
 const $=id=>document.getElementById(id);
-const all=["p8","p4","p9","p10","p7","p3","p6","p5","p2","p0","p1"].map(n=>`img/${n}.jpg`);
-const caps=["my favorite person","car selfie #1 (of many)","that face again","my passenger princess","road trip mode","matching moods","sunny day with you","ice cream run","photo booth us","late nights","you + me"];
+const all=["p8","p20","p11","p4","p12","p9","p14","p10","p17","p7","p15","p3","p18","p6","p19","p5","p13","p2","p16","p0","p1"].map(n=>`img/${n}.jpg`);
+const caps=["my favorite person","us at AUC","sunny day, my pook","car selfie #1 (of many)","that kiss face","that face again","snack break","my passenger princess","night out with you","road trip mode","such a baby","matching moods","cheek to cheek","sunny day with you","your hand, my heart","ice cream run","holding your hand","photo booth us","sleepy pook","late nights","you + me"];
 
 /* heart frame slideshow */
 $('hf').innerHTML=all.map((s,i)=>`<div class="sl ${i?'':'on'}"><img class="bg" src="${s}" alt=""><img class="fg" src="${s}" alt="" style="animation-delay:-${i}s"></div>`).join('');
@@ -675,7 +699,7 @@ $('prev').onclick=()=>{sfx.click();step(-1)};$('next').onclick=()=>{sfx.click();
 
 /* lightbox */
 const lb=$('lb'),lbi=lb.querySelector('img');
-document.addEventListener('click',e=>{const f=e.target.closest('.pol,.track img');if(!f)return;const img=f.tagName==='IMG'?f:f.querySelector('img');lbi.src=img.getAttribute('src');lb.classList.add('on');sfx.whoosh();sfx.twinkle();burst(e.clientX,e.clientY,10)});
+document.addEventListener('click',e=>{const f=e.target.closest('.pol,.track img,.tlimg');if(!f)return;const img=f.tagName==='IMG'?f:f.querySelector('img');lbi.src=img.getAttribute('src');lb.classList.add('on');sfx.whoosh();sfx.twinkle();burst(e.clientX,e.clientY,10)});
 lb.addEventListener('click',e=>{e.stopPropagation();lb.classList.remove('on')});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on');if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
 
@@ -750,10 +774,10 @@ let typedDone=false;const typeLine=()=>{if(typedDone)return;typedDone=true;const
 const spIO=new IntersectionObserver(es=>{if(es[0].isIntersecting){goldRain(30);setTimeout(typeLine,900)}},{threshold:.4});spIO.observe($('special'));
 setInterval(()=>{const r=$('special').getBoundingClientRect();if(r.top<innerHeight*.5&&r.bottom>innerHeight*.5)goldRain(6)},1500);
 
-/* video */
-const v1=$('v1');
-const vIO=new IntersectionObserver(es=>{es[0].isIntersecting?v1.play().catch(()=>{}):v1.pause()},{threshold:.5});vIO.observe(v1);
-v1.addEventListener('click',()=>{v1.muted=!v1.muted;v1.controls=true;if(!v1.muted&&playing()){yt.pauseVideo();wantPlay=false}v1.play().catch(()=>{})});
+/* videos */
+const vids=[...document.querySelectorAll('#vstrip video')];
+const vIO=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting)v.play().catch(()=>{});else{v.pause();v.muted=true}}),{threshold:.6});vids.forEach(v=>vIO.observe(v));
+$('vstrip').addEventListener('click',e=>{const v=e.target.closest('video');if(!v)return;vids.forEach(o=>{if(o!==v)o.muted=true});v.muted=!v.muted;if(!v.muted&&playing()){yt.pauseVideo();wantPlay=false}v.play().catch(()=>{})});
 
 /* intro */
 let openOK=false;const openReady=()=>{if(openOK)return;openOK=true;intro.classList.remove('wait');$('tapme').innerHTML='tap the seal to open your letter ♡'};
