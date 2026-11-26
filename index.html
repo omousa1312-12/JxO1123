@@ -368,6 +368,41 @@ h2{font:400 clamp(52px,14vw,76px)/1 Allura,cursive;color:var(--wine);text-align:
 .strip{align-items:flex-start}
 .fin{padding-bottom:130px}
 .lgrid .wide img{border-radius:2px}
+.const{width:min(74vw,300px);display:block;margin:0 auto}
+.const path{fill:none;stroke:#f6dca0;stroke-width:1.4;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 6px rgba(246,220,160,.8))}
+.const.in path{transition:stroke-dashoffset 4.5s ease 1s;stroke-dashoffset:0}
+.const circle{fill:#fff;opacity:0;filter:drop-shadow(0 0 5px #fff)}
+.const.in circle{animation:starin .6s forwards}
+@keyframes starin{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.const circle{transform-box:fill-box;transform-origin:center}
+.const text{font:400 34px Allura,cursive;fill:#f6dca0;opacity:0;transition:opacity 1.5s 5s}
+.const.in text{opacity:1}
+.constcap{font:italic 18px 'Cormorant Garamond',serif;color:#e8c98f;margin:2px 0 22px}
+.coup{background:var(--blush2)}
+.cgrid{display:grid;gap:14px;max-width:440px;margin:0 auto}
+.cp{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;background:#fff;border-radius:16px;padding:16px 18px;border:2px dashed var(--gold);box-shadow:0 8px 18px rgba(125,20,48,.1);cursor:pointer;overflow:hidden;text-align:left;width:100%;font:inherit;color:inherit}
+.cp::before,.cp::after{content:"";position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:var(--blush2);transform:translateY(-50%)}
+.cp::before{left:-13px}.cp::after{right:-13px}
+.cp b{display:block;font:600 21px/1.2 'Cormorant Garamond',serif;color:var(--wine)}
+.cp small{font:italic 15px 'Cormorant Garamond',serif;color:#6d3442}
+.cp i{font:400 30px Allura,cursive;color:var(--gold);font-style:normal;padding-right:8px}
+.cp .st{position:absolute;right:26px;top:50%;transform:translateY(-50%) rotate(-14deg) scale(2.4);opacity:0;border:3px solid var(--wine2);color:var(--wine2);border-radius:8px;padding:2px 10px;font:700 15px 'Cormorant Garamond',serif;letter-spacing:.12em;background:rgba(255,255,255,.85);transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .2s}
+.cp.used .st{opacity:1;transform:translateY(-50%) rotate(-14deg) scale(1)}
+.cp.used i{opacity:.15}
+.coup .fine{font:italic 16px 'Cormorant Garamond',serif;color:#6d3442;text-align:center;margin-top:16px}
+.ow{background:var(--blush);text-align:center}
+.owg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:440px;margin:0 auto}
+.owe{position:relative;aspect-ratio:1.35;border-radius:10px;background:linear-gradient(160deg,#fff4f6,#f6d3da);box-shadow:0 10px 20px rgba(125,20,48,.14);cursor:pointer;display:grid;place-items:end center;padding:0 8px 12px;font:italic 600 17px/1.15 'Cormorant Garamond',serif;color:var(--wine);overflow:hidden;width:100%}
+.owe::before{content:"";position:absolute;left:0;right:0;top:0;height:58%;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(#f9dfe4,#efc3cc)}
+.owe::after{content:"♥";position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:var(--wine);color:#fbe3e7;font-size:14px;display:grid;place-items:center;font-style:normal;animation:hb 1.4s infinite}
+.owe span{position:relative}
+#note{position:fixed;inset:0;z-index:96;background:rgba(40,6,16,.86);display:grid;place-items:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+#note.on{opacity:1;visibility:visible;transition:opacity .35s}
+#note .card2{max-width:400px;background:#fffdfb;border-radius:8px;padding:30px 24px;transform:translateY(60px) rotate(-2deg) scale(.9);transition:transform .6s cubic-bezier(.3,1.5,.5,1);box-shadow:0 20px 50px rgba(0,0,0,.5);text-align:center}
+#note.on .card2{transform:rotate(-1deg)}
+#note h3{font:400 40px/1 Allura,cursive;color:var(--wine);margin-bottom:12px}
+#note p{font:21px/1.6 'Nothing You Could Do',cursive;color:#24309a}
+#note small{display:block;margin-top:16px;font:italic 15px 'Cormorant Garamond',serif;color:#8a5a66}
 /* POLISH PASS */
 #prog{position:fixed;left:0;top:0;height:4px;width:0;z-index:75;background:linear-gradient(90deg,var(--wine2),var(--gold));border-radius:0 4px 4px 0;box-shadow:0 0 10px rgba(201,154,82,.7)}
 #prog::after{content:"♥";position:absolute;right:-7px;top:-8px;font-size:15px;color:var(--wine2);animation:hb 1.2s infinite}
@@ -551,6 +586,15 @@ svg.bear{cursor:pointer}
   </div>
 </section>
 
+<section class="band coup">
+  <div class="wrap">
+    <h2 class="fade">Love coupons</h2>
+    <p class="lead fade">tap one to redeem it. no expiry date, pook</p>
+    <div class="cgrid" id="cgrid"></div>
+    <p class="fine">valid forever, only for Jenna</p>
+  </div>
+</section>
+
 <section class="band tape">
   <div class="wrap">
     <h2 class="fade">Our songs</h2>
@@ -638,6 +682,7 @@ svg.bear{cursor:pointer}
 
 <section class="band night" id="night">
   <div class="wrap">
+    <svg class="const" id="const" viewBox="0 0 260 220"><path d="M130.0 74.0 L135.9 57.2 L167.3 33.0 L213.3 40.8 L235.6 80.2 L213.3 125.4 L167.3 164.6 L135.9 196.6 L130.0 210.4 L124.1 196.6 L92.7 164.6 L46.7 125.4 L24.4 80.2 L46.7 40.8 L92.7 33.0 L124.1 57.2 Z" pathLength="1"/><circle cx="130.0" cy="74.0" r="3.2" style="animation-delay:0.00s"/><circle cx="135.9" cy="57.2" r="2.2" style="animation-delay:0.16s"/><circle cx="167.3" cy="33.0" r="2.2" style="animation-delay:0.32s"/><circle cx="213.3" cy="40.8" r="2.2" style="animation-delay:0.48s"/><circle cx="235.6" cy="80.2" r="3.2" style="animation-delay:0.64s"/><circle cx="213.3" cy="125.4" r="2.2" style="animation-delay:0.80s"/><circle cx="167.3" cy="164.6" r="2.2" style="animation-delay:0.96s"/><circle cx="135.9" cy="196.6" r="2.2" style="animation-delay:1.12s"/><circle cx="130.0" cy="210.4" r="3.2" style="animation-delay:1.28s"/><circle cx="124.1" cy="196.6" r="2.2" style="animation-delay:1.44s"/><circle cx="92.7" cy="164.6" r="2.2" style="animation-delay:1.60s"/><circle cx="46.7" cy="125.4" r="2.2" style="animation-delay:1.76s"/><circle cx="24.4" cy="80.2" r="3.2" style="animation-delay:1.92s"/><circle cx="46.7" cy="40.8" r="2.2" style="animation-delay:2.08s"/><circle cx="92.7" cy="33.0" r="2.2" style="animation-delay:2.24s"/><circle cx="124.1" cy="57.2" r="2.2" style="animation-delay:2.40s"/><text x="130" y="112" text-anchor="middle">J + O</text></svg><p class="constcap">I asked the stars to draw us</p>
     <div class="num" id="nd">733</div>
     <p class="u">days of you</p>
     <p class="l">and I would choose you again on every single one of them.</p>
@@ -661,6 +706,14 @@ svg.bear{cursor:pointer}
   </div>
 </section>
 
+<section class="band ow">
+  <div class="wrap">
+    <h2 class="fade">Open when…</h2>
+    <p class="lead fade">little letters for later</p>
+    <div class="owg" id="owg"></div>
+  </div>
+</section>
+
 <section class="band fin">
   <div class="wrap">
     <h2>One last thing</h2>
@@ -681,6 +734,7 @@ svg.bear{cursor:pointer}
 
 <div id="ytbox" class="intro"><div id="ytp"></div></div>
 <div id="dock" aria-label="Music player"><div class="disc"></div><div class="t"><b id="dkt">Wehyati Khaliki</b><small id="dka">Amr Diab</small></div><button class="pp" id="dkpp" aria-label="Play or pause">▶</button><button id="dknx" aria-label="Next song">⏭</button></div>
+<div id="note" role="dialog" aria-label="A note"><div class="card2"><h3 id="nt"></h3><p id="np"></p><small>tap anywhere to close</small></div></div>
 <div id="lb" role="dialog" aria-label="Photo"><img alt="Jenna and Omar"><p>tap anywhere to close</p></div>
 
 <script>
@@ -825,6 +879,15 @@ const days=()=>Math.max(0,Math.floor((Date.now()-start)/86400000));let counted=f
 new IntersectionObserver(es=>{if(!es[0].isIntersecting||counted)return;counted=true;sfx.rise(1.6);const D=days(),t0=performance.now();const f=t=>{const k=Math.min(1,(t-t0)/1600);$('nd').textContent=Math.round(D*(1-Math.pow(1-k,3))).toLocaleString();if(k<1)requestAnimationFrame(f);else sfx.chime()};requestAnimationFrame(f)},{threshold:.4}).observe(n)}
 {const pop=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');sfx.twinkle();pop.unobserve(e.target)}}),{threshold:.5});pop.observe($('bouq'));pop.observe($('fam'));
 $('chips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;sfx.pop();const r=c.getBoundingClientRect();burst(r.left+r.width/2,r.top,10)})}
+/* coupons + open when + constellation */
+{const cps=[['A Wingo date','just us two'],['Lychee, on me','as many as you want'],['Bascota run','whenever you say so'],['Dinner at Mobistro','our place'],['A day that is all about you','you pick everything'],['One "you were right, alby"','use it wisely']];
+$('cgrid').innerHTML=cps.map(([a,b])=>`<button class="cp fade"><span><b>${a}</b><small>${b}</small></span><i>♡</i><span class="st">REDEEMED</span></button>`).join('');
+$('cgrid').addEventListener('click',e=>{const c=e.target.closest('.cp');if(!c||c.classList.contains('used'))return;c.classList.add('used');sfx.beat();setTimeout(sfx.twinkle,250);const r=c.getBoundingClientRect();burst(r.right-70,r.top+r.height/2,14)});
+const ows=[['you miss me','I miss you more, pook. Close your eyes for a second. I am already thinking about you, I promise.'],['you are sad','Come here, alby. Whatever it is, we will work it all out together. You are never alone in it.'],['you cannot sleep','You are my last thought every night, so right now we are thinking about each other. Sleep, my baby.'],['we argue','I am sorry. I love you more than I love being right. Yalla, let us fix it.'],['you doubt yourself','You are my everything, and the most beautiful girl I know. I believe in you, always.'],['you need a smile','Remember the car crash? That is how our story started. Look how far we came, pook.']];
+$('owg').innerHTML=ows.map(([a],i)=>`<button class="owe fade" data-i="${i}"><span>…${a}</span></button>`).join('');
+const note=$('note');$('owg').addEventListener('click',e=>{const b=e.target.closest('.owe');if(!b)return;const [a,t]=ows[+b.dataset.i];$('nt').textContent='Open when '+a;$('np').textContent=t;note.classList.add('on');sfx.chime();burst(e.clientX,e.clientY,12)});
+note.addEventListener('click',()=>note.classList.remove('on'));
+new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){$('const').classList.add('in');sfx.twinkle();setTimeout(sfx.chime,5200);o.disconnect()}},{threshold:.6}).observe($('const'))}
 /* polish: progress, mute, bears, cards */
 const prog=$('prog');addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?scrollY/h*100:0)+'%'},{passive:true});
 $('mute').onclick=()=>{const on=sfx.toggle();$('mute').classList.toggle('off',!on);if(on)sfx.pop()};
