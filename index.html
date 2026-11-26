@@ -429,7 +429,7 @@ h2{font:400 clamp(52px,14vw,76px)/1 Allura,cursive;color:var(--wine);text-align:
 </section>
 
 <div id="ytbox" class="intro"><div id="ytp"></div></div>
-<div id="dock" aria-label="Music player"><div class="disc"></div><div class="t"><b id="dkt">Maak Alby</b><small id="dka">Amr Diab</small></div><button class="pp" id="dkpp" aria-label="Play or pause">▶</button><button id="dknx" aria-label="Next song">⏭</button></div>
+<div id="dock" aria-label="Music player"><div class="disc"></div><div class="t"><b id="dkt">Wehyati Khaliki</b><small id="dka">Amr Diab</small></div><button class="pp" id="dkpp" aria-label="Play or pause">▶</button><button id="dknx" aria-label="Next song">⏭</button></div>
 <div id="lb" role="dialog" aria-label="Photo"><img alt="Jenna and Omar"><p>tap anywhere to close</p></div>
 
 <script>
@@ -498,7 +498,7 @@ return{unlock:g,
 
 const intro=$('intro');
 /* youtube player */
-let yt=null,ready=false,cur=0,wantPlay=false,alt=0;
+let yt=null,ready=false,cur=4,wantPlay=false,alt=0;
 const vid=()=>songs[cur][3][alt];
 const dock=$('dock');
 const setUI=()=>{const [t,,by,id]=songs[cur];$('dkt').textContent=t;$('dka').textContent=by;document.querySelectorAll('.song').forEach(b=>b.classList.toggle('playing',+b.dataset.i===cur));$('ytlink').href='https://www.youtube.com/watch?v='+id[0];$('ytfail').style.display='none'};
@@ -509,7 +509,7 @@ const checkLater=()=>setTimeout(()=>{if(!wantPlay||!ready)return;if(playing()){i
   try{yt.mute();yt.playVideo()}catch(e){}
   setTimeout(()=>{if(!wantPlay)return;if(playing()&&yt.isMuted())ask('🔊 tap for sound');else if(!playing())ask('▶ play our song')},1400)},1800);
 const unmute=()=>{if(ready&&yt.isMuted()){yt.unMute();yt.setVolume(100)}};
-window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('ytp',{videoId:songs[0][3][0],width:'100%',height:'100%',playerVars:{playsinline:1,rel:0,modestbranding:1},events:{
+window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('ytp',{videoId:songs[4][3][0],width:'100%',height:'100%',playerVars:{playsinline:1,rel:0,modestbranding:1},events:{
   onReady:()=>{ready=true;yt.setVolume(100);openReady();if(wantPlay){yt.loadVideoById(vid());yt.playVideo();checkLater()}},
   onStateChange:e=>{const p=e.data===1;if((p||e.data===3)&&!intro.classList.contains('open'))open(true);dock.classList.toggle('playing',p);$('dkpp').textContent=p?'❚❚':'▶';if(p&&!yt.isMuted()){dock.classList.remove('ask');$('letsplay').classList.remove('on')}if(e.data===0)play((cur+1)%songs.length)},
   onError:()=>{if(alt<songs[cur][3].length-1){alt++;yt.loadVideoById(vid());if(wantPlay)yt.playVideo()}else{$('ytfail').style.display='block';$('tapme').textContent='tap the envelope to open ♡'}}}})};
@@ -537,7 +537,7 @@ const ybox=$('ytbox'),yph=$('ytph');
 const place=()=>{if(ybox.classList.contains('intro'))return;const r=yph.getBoundingClientRect();ybox.style.top=(r.top+scrollY)+'px';ybox.style.left=(r.left+scrollX)+'px';ybox.style.width=r.width+'px';ybox.style.height=r.height+'px'};
 addEventListener('resize',place);addEventListener('load',place);setInterval(place,1000);
 const open=fromPlayer=>{if(!openOK&&!fromPlayer)return;if(intro.classList.contains('open'))return;sfx.unlock();sfx.chime();intro.classList.add('open','gone');ybox.classList.add('hide');setTimeout(()=>{ybox.classList.remove('intro');place();ybox.classList.remove('hide')},1500);
-if(fromPlayer){cur=0;alt=alt||0;wantPlay=true;setUI();dock.classList.add('on');dock.classList.add('playing');$('dkpp').textContent='❚❚'}else play(0);setTimeout(()=>{rain(36);sfx.twinkle()},900)};
+if(fromPlayer){cur=4;alt=alt||0;wantPlay=true;setUI();dock.classList.add('on');dock.classList.add('playing');$('dkpp').textContent='❚❚'}else play(4);setTimeout(()=>{rain(36);sfx.twinkle()},900)};
 intro.addEventListener('click',()=>open());
 intro.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')open()});
 
