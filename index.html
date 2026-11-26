@@ -446,7 +446,7 @@ lb.addEventListener('click',e=>{e.stopPropagation();lb.classList.remove('on')});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on');if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
 
 /* songs */
-const songs=[["Maak Alby","معاك قلبي","Amr Diab","hy4qC7CTQTg","our favorite song","fav"],["We Maloh","وماله","Amr Diab","amy2fttDCb8","",""],["Wala Ash Wala Kan","ولا عاش ولا كان","TUL8TE","CwKvsoCILOw","",""],["Makanak Fe Alby","مكانك في قلبي","Amr Diab","X-k9_eTW7bg","",""],["Wehyati Khaliki","وحياتي خليكي","Amr Diab","2imKqhWTwCg","the special one","special"]];
+const songs=[["Maak Alby","معاك قلبي","Amr Diab",["hy4qC7CTQTg","EnBXjdgQ9X0","ZgnG92VFu-k"],"our favorite song","fav"],["We Maloh","وماله","Amr Diab",["amy2fttDCb8","bg1TW4DEiaM","xuSdRQcNaoE"],"",""],["Wala Ash Wala Kan","ولا عاش ولا كان","TUL8TE",["CwKvsoCILOw","5kZq4rwCPjw","j8HwAQ-ASG8"],"",""],["Makanak Fe Alby","مكانك في قلبي","Amr Diab",["X-k9_eTW7bg","IkYmoImnm9Y","LkIDXIgC3Ow"],"",""],["Wehyati Khaliki","وحياتي خليكي","Amr Diab",["2imKqhWTwCg","lAWRT2P4qWc","Ls8fIqJ1bjg","gHf1nhvDHtM"],"the special one","special"]];
 $('songs').innerHTML=songs.map(([t,a,by,id,tag,cls],i)=>`<li class="fade"><button class="song ${cls}" data-i="${i}"><span class="n">${cls?'♡':i+1}</span><span><b>${t}</b><span class="ar">${a}</span> <small style="opacity:.75">· ${by}</small>${tag?`<br><span class="tag">${tag}</span>`:''}</span><span class="go">play ›</span></button></li>`).join('');
 $('eq').innerHTML=Array.from({length:14},(_,i)=>`<b style="animation-delay:-${(i*0.13)%0.9}s;animation-duration:${0.6+(i%4)*0.15}s"></b>`).join('');
 $('notes').innerHTML=['♪','♫','♥','♪','♬','♥'].map((n,i)=>`<i style="--nx:${(i%2?1:-1)*(30+i*12)}px;animation-delay:${i*0.5}s">${n}</i>`).join('');
@@ -472,16 +472,17 @@ const rain=n=>{if(reduce)return;for(let i=0;i<n;i++){const h=document.createElem
 document.addEventListener('pointerdown',e=>{if(!e.target.closest('a,button,#intro,.pol,.track img'))burst(e.clientX,e.clientY,7)});
 
 /* youtube player */
-let yt=null,ready=false,cur=0,wantPlay=false;
+let yt=null,ready=false,cur=0,wantPlay=false,alt=0;
+const vid=()=>songs[cur][3][alt];
 const dock=$('dock');
-const setUI=()=>{const [t,,by,id]=songs[cur];$('dkt').textContent=t;$('dka').textContent=by;document.querySelectorAll('.song').forEach(b=>b.classList.toggle('playing',+b.dataset.i===cur));$('ytlink').href='https://www.youtube.com/watch?v='+id;$('ytfail').style.display='none'};
+const setUI=()=>{const [t,,by,id]=songs[cur];$('dkt').textContent=t;$('dka').textContent=by;document.querySelectorAll('.song').forEach(b=>b.classList.toggle('playing',+b.dataset.i===cur));$('ytlink').href='https://www.youtube.com/watch?v='+id[0];$('ytfail').style.display='none'};
 const playing=()=>yt&&ready&&yt.getPlayerState&&yt.getPlayerState()===1;
-const play=i=>{cur=i;setUI();dock.classList.add('on');wantPlay=true;if(ready){yt.loadVideoById(songs[i][3]);yt.playVideo()}checkLater()};
+const play=i=>{cur=i;alt=0;setUI();dock.classList.add('on');wantPlay=true;if(ready){yt.loadVideoById(vid());yt.playVideo()}checkLater()};
 const checkLater=()=>setTimeout(()=>{if(wantPlay&&!playing()){dock.classList.add('ask');$('letsplay').classList.add('on')}},2200);
-window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('ytp',{videoId:songs[0][3],playerVars:{playsinline:1,rel:0,modestbranding:1},events:{
-  onReady:()=>{ready=true;if(wantPlay){yt.loadVideoById(songs[cur][3]);yt.playVideo()}},
+window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('ytp',{videoId:songs[0][3][0],playerVars:{playsinline:1,rel:0,modestbranding:1},events:{
+  onReady:()=>{ready=true;if(wantPlay){yt.loadVideoById(vid());yt.playVideo()}},
   onStateChange:e=>{const p=e.data===1;dock.classList.toggle('playing',p);$('dkpp').textContent=p?'❚❚':'▶';if(p){dock.classList.remove('ask');$('letsplay').classList.remove('on')}if(e.data===0)play((cur+1)%songs.length)},
-  onError:()=>{$('ytfail').style.display='block'}}})};
+  onError:()=>{if(alt<songs[cur][3].length-1){alt++;yt.loadVideoById(vid());if(wantPlay)yt.playVideo()}else $('ytfail').style.display='block'}}})};
 {const t=document.createElement('script');t.src='https://www.youtube.com/iframe_api';document.head.appendChild(t)}
 document.getElementById('songs').addEventListener('click',e=>{const b=e.target.closest('.song');if(b)play(+b.dataset.i)});
 $('dkpp').onclick=()=>{if(!ready)return;if(playing()){wantPlay=false;yt.pauseVideo()}else{wantPlay=true;yt.playVideo();checkLater()}};
