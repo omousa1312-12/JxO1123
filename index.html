@@ -511,7 +511,7 @@ const checkLater=()=>setTimeout(()=>{if(!wantPlay||!ready)return;if(playing()){i
 const unmute=()=>{if(ready&&yt.isMuted()){yt.unMute();yt.setVolume(100)}};
 window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('ytp',{videoId:songs[0][3][0],width:'100%',height:'100%',playerVars:{playsinline:1,rel:0,modestbranding:1},events:{
   onReady:()=>{ready=true;yt.setVolume(100);openReady();if(wantPlay){yt.loadVideoById(vid());yt.playVideo();checkLater()}},
-  onStateChange:e=>{const p=e.data===1;if(p&&!intro.classList.contains('open'))open(true);dock.classList.toggle('playing',p);$('dkpp').textContent=p?'❚❚':'▶';if(p&&!yt.isMuted()){dock.classList.remove('ask');$('letsplay').classList.remove('on')}if(e.data===0)play((cur+1)%songs.length)},
+  onStateChange:e=>{const p=e.data===1;if((p||e.data===3)&&!intro.classList.contains('open'))open(true);dock.classList.toggle('playing',p);$('dkpp').textContent=p?'❚❚':'▶';if(p&&!yt.isMuted()){dock.classList.remove('ask');$('letsplay').classList.remove('on')}if(e.data===0)play((cur+1)%songs.length)},
   onError:()=>{if(alt<songs[cur][3].length-1){alt++;yt.loadVideoById(vid());if(wantPlay)yt.playVideo()}else{$('ytfail').style.display='block';$('tapme').textContent='tap the envelope to open ♡'}}}})};
 {const t=document.createElement('script');t.src='https://www.youtube.com/iframe_api';document.head.appendChild(t)}
 document.getElementById('songs').addEventListener('click',e=>{const b=e.target.closest('.song');if(b){sfx.pop();play(+b.dataset.i)}});
