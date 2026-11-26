@@ -545,7 +545,7 @@ svg.bear{cursor:pointer}
   <div class="wrap">
     <h2 class="fade">That smile</h2>
     <p class="lead fade">the reason for mine</p>
-    <div class="spot fade"><img id="smileimg" src="img/p3.jpg" alt="Jenna smiling next to Omar"></div>
+    <div class="spot fade"><img id="smileimg" src="img/p18.jpg" alt="Jenna smiling next to Omar"></div>
     <p class="cap fade">my favorite smile</p>
     <p class="sub fade">so, so beautiful. It gets me every single time.</p>
   </div>
@@ -604,7 +604,7 @@ svg.bear{cursor:pointer}
   <div class="wrap">
     <h2 class="fade">Our songs</h2>
     <p class="lead fade">they keep playing while you scroll ♡</p>
-    <button class="letsplay" id="letsplay">▶ play our song</button>
+    <button class="letsplay" id="letsplay">play our song</button>
     <div class="yt" id="ytph"></div>
     <p class="ytfail" id="ytfail">this one won't play here, <a id="ytlink" target="_blank" rel="noopener">open it on YouTube ›</a></p>
     <div class="notes" id="notes" style="position:relative;left:50%;height:0"></div>
@@ -738,15 +738,15 @@ svg.bear{cursor:pointer}
 </section>
 
 <div id="ytbox" class="intro"><div id="ytp"></div></div>
-<div id="dock" aria-label="Music player"><div class="disc"></div><div class="t"><b id="dkt">Wehyati Khaliki</b><small id="dka">Amr Diab</small></div><button class="pp" id="dkpp" aria-label="Play or pause">▶</button><button id="dknx" aria-label="Next song">⏭</button></div>
+<div id="dock" aria-label="Music player"><div class="disc"></div><div class="t"><b id="dkt">Wehyati Khaliki</b><small id="dka">Amr Diab</small></div><button class="pp" id="dkpp" aria-label="Play or pause"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 4v16l13-8z"/></svg></button><button id="dknx" aria-label="Next song"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 5v14l9-7zM13 5v14l9-7z"/></svg></button></div>
 <div id="note" role="dialog" aria-label="A note"><div class="card2"><h3 id="nt"></h3><p id="np"></p><small>tap anywhere to close</small></div></div>
 <div id="lb" role="dialog" aria-label="Photo"><img alt="Jenna and Omar"><p>tap anywhere to close</p></div>
 
 <script>
 {
 const $=id=>document.getElementById(id);
-const all=["p8","p20","p11","p4","p12","p9","p14","p10","p17","p7","p15","p3","p18","p6","p19","p5","p13","p2","p16","p0","p1"].map(n=>`img/${n}.jpg`);
-const caps=["my favorite person","us at AUC","sunny day, my pook","car selfie #1 (of many)","that kiss face","that face again","snack break","my passenger princess","night out with you","road trip mode","such a baby","matching moods","cheek to cheek","sunny day with you","your hand, my heart","ice cream run","holding your hand","photo booth us","sleepy pook","late nights","you + me"];
+const all=["p8","p20","p11","p4","p12","p9","p14","p10","p17","p7","p15","p18","p6","p19","p5","p13","p2","p16","p0","p1"].map(n=>`img/${n}.jpg`);
+const caps=["my favorite person","us at AUC","sunny day, my pook","car selfie #1 (of many)","that kiss face","that face again","snack break","my passenger princess","night out with you","road trip mode","such a baby","cheek to cheek","sunny day with you","your hand, my heart","ice cream run","holding your hand","photo booth us","sleepy pook","late nights","you + me"];
 
 /* heart frame slideshow */
 $('hf').innerHTML=[0,1].map(k=>`<div class="sl ${k?'':'on'}"><img class="bg" alt="" ${k?'':`src="${all[0]}"`}><img class="fg" alt="" ${k?'':`src="${all[0]}"`}></div>`).join('');
@@ -817,11 +817,11 @@ const play=i=>{cur=i;alt=0;setUI();dock.classList.add('on');wantPlay=true;if(rea
 const ask=txt=>{$('letsplay').textContent=txt;$('letsplay').classList.add('on');dock.classList.add('ask')};
 const checkLater=()=>setTimeout(()=>{if(!wantPlay||!ready)return;if(playing()){if(yt.isMuted())ask('tap for sound');return}
   try{yt.mute();yt.playVideo()}catch(e){}
-  setTimeout(()=>{if(!wantPlay)return;if(playing()&&yt.isMuted())ask('tap for sound');else if(!playing())ask('▶ play our song')},1400)},1800);
+  setTimeout(()=>{if(!wantPlay)return;if(playing()&&yt.isMuted())ask('tap for sound');else if(!playing())ask('play our song')},1400)},1800);
 const unmute=()=>{if(ready&&yt.isMuted()){yt.unMute();yt.setVolume(100)}};
 window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('ytp',{videoId:songs[4][3][0],width:'100%',height:'100%',playerVars:{playsinline:1,rel:0,modestbranding:1},events:{
   onReady:()=>{ready=true;yt.setVolume(100);openReady();if(wantPlay){yt.loadVideoById(vid());yt.playVideo();checkLater()}},
-  onStateChange:e=>{const p=e.data===1;if((p||e.data===3)&&!intro.classList.contains('open'))open(true);dock.classList.toggle('playing',p);$('dkpp').textContent=p?'❚❚':'▶';if(p&&!yt.isMuted()){dock.classList.remove('ask');$('letsplay').classList.remove('on')}if(e.data===0)play((cur+1)%songs.length)},
+  onStateChange:e=>{const p=e.data===1;if((p||e.data===3)&&!intro.classList.contains('open'))open(true);dock.classList.toggle('playing',p);$('dkpp').innerHTML=p?'<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>':'<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>';if(p&&!yt.isMuted()){dock.classList.remove('ask');$('letsplay').classList.remove('on')}if(e.data===0)play((cur+1)%songs.length)},
   onError:()=>{if(alt<songs[cur][3].length-1){alt++;if(wantPlay){yt.loadVideoById(vid());yt.playVideo()}else yt.cueVideoById(vid())}else{$('ytfail').style.display='block';$('tapme').textContent='tap the envelope to open ♡'}}}})};
 {const t=document.createElement('script');t.src='https://www.youtube.com/iframe_api';document.head.appendChild(t)}
 document.getElementById('songs').addEventListener('click',e=>{const b=e.target.closest('.song');if(b){sfx.pop();play(+b.dataset.i)}});
@@ -848,7 +848,7 @@ const ybox=$('ytbox'),yph=$('ytph');
 const place=()=>{if(ybox.classList.contains('intro'))return;const r=yph.getBoundingClientRect();ybox.style.top=(r.top+scrollY)+'px';ybox.style.left=(r.left+scrollX)+'px';ybox.style.width=r.width+'px';ybox.style.height=r.height+'px'};
 addEventListener('resize',place);addEventListener('load',place);setInterval(place,1000);
 const open=fromPlayer=>{if(intro.classList.contains('open'))return;setTimeout(startAmb,1400);sfx.unlock();sfx.chime();intro.classList.add('open','gone');$('mute').classList.add('on');ybox.classList.add('hide');setTimeout(()=>{ybox.classList.remove('intro');place();ybox.classList.remove('hide')},1400);
-if(fromPlayer){cur=4;alt=alt||0;wantPlay=true;setUI();dock.classList.add('on');dock.classList.add('playing');$('dkpp').textContent='❚❚'}else play(4);setTimeout(()=>{rain(18);sfx.twinkle()},500)};
+if(fromPlayer){cur=4;alt=alt||0;wantPlay=true;setUI();dock.classList.add('on');dock.classList.add('playing');$('dkpp').innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>'}else play(4);setTimeout(()=>{rain(18);sfx.twinkle()},500)};
 intro.addEventListener('click',()=>open());
 intro.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')open()});
 
